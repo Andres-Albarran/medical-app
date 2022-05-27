@@ -1,0 +1,54 @@
+<%-include("partials/navbar")-%>
+<%-include("partials/messages")-%>
+<%if(count == 0) {%>
+    <h1 class="boton mt-4">No hay consultas solicitadas.</h1>
+<%}%>
+<% if(count > 0) {%>
+    <div class="row">
+        <%consultas.forEach(function(consulta) {%>
+            <div class="card2 col-lg-3 col-md-5 col-sm-7 col-9">
+                <img class="card-img-top" src="/uploads/<%- consulta.image -%>" alt="Card image cap" style="width: 200px; height: 200px; border-radius:80%;">
+                <h1><%- consulta.author -%> </h1>
+                <a href="/agendar-consulta/<%-consulta._id-%>" class="btn btn-success">Agendar consulta</a>
+                <form action="/retirar/<%-consulta._id-%>?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger mt-4" type="submit">Rechazar consulta</button>
+                </form>
+            </div>
+        <%})%>
+    </div>
+<%}%>
+<%if(count2 == 0) {%>
+    <h1 class="boton mt-4">No hay nada en la agenda.</h1>
+<%}%>
+<%if(count2 > 0) {%>
+    <h1 class="boton mt-4">Mi agenda</h1>
+    <div class="row">
+        <%agendadas.forEach(function(consulta) {%>
+            <div class="col-lg-3 col-md-5 col-sm-7 col-9 mt-4">
+                <img class="card-img-top" src="/uploads/<%- consulta.patientImage -%>" alt="Card image cap" style="width: 200px; height: 200px; border-radius:80%;">
+                <h1><%- consulta.patient -%> </h1>
+                <h2><%- consulta.patientNumber -%></h2>
+                <h2><%- consulta.date -%> </h2>
+                <div class="row">
+                    <a href="/consulta/introducir-resultados/<%-consulta._id-%>" class="btn btn-success">Introducir resultados a esta consulta</a>
+                    <a href="/consulta/cambiar-fecha/<%-consulta._id-%>" class="btn btn-primary mt-4">Cambiar fecha</a>
+                    <button href="#<%-consulta.slug2-%>" class="btn btn-danger mt-4 modal-button">Eliminar esta consulta agendada</button>
+                </div>
+            </div>
+            <%console.log(consulta)%>
+            <div id="<%-consulta.slug2-%>" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>¿Seguro quieres eliminar esta consulta?</p>
+                  <form action="/consulta/eliminar/<%-consulta._id-%>?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger mt-4" type="submit">Si, eliminar</button>
+                  </form>
+                </div>
+              </div>
+        <%})%>        
+    </div>
+    <%}%>
+
+<%-include("partials/footer")-%>

@@ -1,0 +1,16 @@
+<%-include("partials/navbar")-%>
+<%-include("partials/messages")-%>
+<ul id="myUL2" class="row" style="flex-wrap: wrap; justify-content:space-evenly;">
+<% agendadas.forEach(function(agend) {%>
+    <div class="card2 col-lg-3 col-md-5 col-sm-7 col-9">
+    <li class="col-lg-3 col-md-4 col-8 searchList mt-4" style="border: 1px solid; margin: 0 10px;"></li>
+      <div class="card-body">
+        <h2 class="card-subtitle"><%- agend.title -%></h2>
+        <h3 class="card-subtitle"><%- agend.date -%></h3>
+        <h5 class="mt-4" style="height: 100px"><%- resultado.prescription.substring(0, 103) + "..."-%></h5>
+          <a href="/historial/ver-resultado/<%-resultado._id%>" class="btn btn-primary col-8 boton">Ver detalles</a>
+      </div>
+    </div>
+<%})%>
+</ul>
+<%-include("partials/footer")-%>

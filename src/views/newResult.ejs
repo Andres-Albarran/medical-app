@@ -1,0 +1,24 @@
+<%-include("partials/navbar")-%>
+<%-include("partials/messages")-%>
+<%-include("partials/errors")-%>
+<div class="col-xsm-12 col-sm-10 col-lg-5 col-md-7  boton">
+    <img class="card-img-top" src="/uploads/<%- usuario.image -%>" alt="Card image cap" style="width: 200px; height: 200px; border-radius:80%;">
+    <div class="card-body">
+      <h1 name="patient"><%- usuario.name -%></h1>
+      <h4><%- usuario.number -%></h4>
+    </div>
+  <form class="formulario" action="/historial/nuevo-resultado/<%- usuario.id -%>" method="post">
+    <h3 class="mt-4" >Asunto</h3>
+    <input type="text" name="title">
+    <h4 class="card-subtitle mb-2 mt-4">Fecha de realización:</h4>
+    <input type="text" name="date">
+    <h4 class="card-subtitle mb-2 mt-4">Resultados de la consulta:</h4>
+    <div class="container">
+      <div class="commet">
+        <input type="text" name="prescription" class="textinput">
+      </div>
+    </div>
+    <button type="submit" name="button" class="btn btn-primary mt-4">Introducir resultados</button>
+</form>
+</div>
+  <%-include("partials/footer")-%>

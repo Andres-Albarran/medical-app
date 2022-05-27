@@ -1,0 +1,31 @@
+<%-include("partials/navbar")-%>
+<%-include("partials/messages")-%>
+               <div class="login col-10" data-aos="zoom-out">
+  
+                  <div class="text-center">
+                    <img src="images/Logos/c.png"
+                      style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1" style="color: white !important;">Inicia sesión para ver tu historial médico.</h4>
+                  </div>
+  
+                  <form action="/login" method="post">
+  
+                    <div class="form-outline mb-4">
+                      <input type="text" id="form2Example11" class="form-control" name="name" />
+                      <label class="form-label" for="form2Example11"style="color: white !important;" >Nombre</label>
+                    </div>
+  
+                    <div class="form-outline mb-4">
+                      <input type="password" id="form2Example22" class="form-control" name="password"/>
+                      <label class="form-label" for="form2Example22" style="color: white !important;">Contraseña</label>
+                    </div>
+  
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Iniciar sesión.</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                
+<%-include("partials/footer")-%>

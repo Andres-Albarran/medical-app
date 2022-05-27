@@ -1,0 +1,40 @@
+<%-include("partials/navbar")-%>
+<%if(usuario.admin) {%>
+<div class="col-4 boton mt-4">
+    <img class="card-img-top" src="/uploads/<%- usuario.image -%>" alt="Card image cap" style="width: 200px; height: 200px; border-radius:80%;">
+    <div class="card-body">
+      <h1><%- usuario.name -%></h1>
+      <h4><%- usuario.number -%></h4>
+    </div>
+  </div>
+  <%}%>
+  <div class="formulario mt-4 card2 col-10 col-md-6 col-lg-4 boton">
+    <div class="card-body">
+      <h2><%-result.title-%></h2>
+      <h2><%-result.date-%></h2>
+      <h3><%-result.prescription-%></h3>
+    </div>
+      <%console.log(usuario)%>
+        <%if(admin) {%>
+        <div class="row" style="justify-content: space-between; flex-wrap: wrap;">
+        <a href="/historial/<%-usuario[0]._id-%>" class="btn btn-primary col-5">Volver</a>
+        <a href="/historial/editar/<%-result._id%>" class="btn btn-primary col-5">Editar resultado</a>
+        <button href="#secure" class="btn btn-danger col-5 mt-4 boton modal-button">Eliminar resultado</button>
+      </div>
+        <%}%>
+        <%if(!admin) {%>
+          <a href="/mi-historial" class="btn btn-primary boton">Volver</a>
+        <%}%>
+      </div>
+  <div id="secure" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>¿Seguro que quieres eliminar esta entrada?</p>
+      <form action="/historial/eliminar/<%-result._id%>?_method=DELETE" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-danger col-5 mt-4 boton" type="submit">Eliminar resultado</button>
+      </form>
+    </div>
+  </div>
+  
+<%-include("partials/footer")-%>

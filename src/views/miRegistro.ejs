@@ -1,0 +1,52 @@
+<%-include("partials/navbar")-%>
+<%-include("partials/messages")-%>
+<% if(!admin && count == 0 && count2 == 0){%>
+    <div class="card mt-4 boton" style="width: 18rem; margin: auto;">
+    <div class="card-body">
+      <p class="card-title">Has click en el siguiente botón para pedir una consulta al médico.</p>
+      <form class="" action="/nueva-consulta" method="post">
+        <button type="submit" class="btn btn-success">Pedir consulta</button>
+      </form>
+    </div>
+  </div>
+  <%}%>
+  <% if(!admin && count == 1){%>
+      <div class="card mt-4 boton" style="width: 18rem;">
+      <div class="card-body">
+        <p class="card-title">Tu consulta está siendo agendada.</p>
+        <form class="" action="/retirar/<%= variable[0]._id -%>?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" name="button" class="btn btn-danger">Cancelar consulta</button>
+        </form>
+      </div>
+      </div>
+    <%}%>
+    <% if(!admin && count == 0 && count2 == 1){%>
+      <% variable2.forEach(function(variable) {%>
+        <br>
+        <div class="boton mt-4">
+          <h2>Tu consulta ha sido agendada para la siguiente fecha y hora:</h2>
+          <h1><%- variable.date -%></h1>
+        </div>
+      <%})%>
+      <%}%>
+    <%if(!admin && count3 == 0){%>
+      <br>
+        <h1 class="boton mt-4">Todavía no tienes resultados</h1>
+    <%}%>
+    <%if(count3 > 0){%>
+    <h1 class="boton mt-4">Mis resultados médicos</h1>
+    <div class="row">
+    <%results.forEach(function(result){%>
+    <div class="card2 col-lg-3 col-md-5 col-sm-7 col-9">
+        <div class="card-body">
+          <h2 class="card-subtitle"><%- result.title -%></h2>
+          <h3 class="card-subtitle"><%- result.date -%></h3>
+          <h5 class="mt-4" style="height: 100px"><%- result.prescription.substring(0, 103) + "..."-%></h5>
+            <a href="/historial/ver-resultado/<%-result._id-%>" class="btn btn-primary col-8 boton">Ver detalles</a>
+        </div>
+      </div>
+    <%})%>
+    <%}%>
+    </div>
+<%-include("partials/footer")-%>
